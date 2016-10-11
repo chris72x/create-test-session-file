@@ -38,7 +38,7 @@ foreach ($element in $schoolArray) {
           "020"  = "5678"   # Senior High School
         }
 
-    function MoveFilesFromProsoftToCDT {
+    function MoveFilesFromSISToCDT {
 
         Copy-Item $importedFile1 $exportedFile2;
 
