@@ -1,4 +1,4 @@
-[int64[]]$PASecureIDArray = @();  # Strongly typed, only integers
+[uint64[]]$PASecureIDArray = @();  # Strongly typed, only integers
 while($s = (Read-Host "Enter a PA SecureID").Trim()){$PASecureIDArray+=$s} # Trim takes out spaces before or after
 
 $schoolArray = "FIR", "SEC", "THI"
