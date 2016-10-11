@@ -47,7 +47,6 @@ foreach ($element in $schoolArray) {
     function KeepAndAddParticularColumns {
 
     #  This function imports the csv file, keeps certain columns, and saves it as another csv file.
-
          Import-Csv $importedFile3 |`
      
          Select-Object -Property @{ expression = {$_.cenrlhmdist}; label = 'District Code' }, `
@@ -69,7 +68,6 @@ foreach ($element in $schoolArray) {
             'teachlast', `
             'teachfirst', `
             'ngrade' |
-     
          select -Property @{n='chome_rm';e={$_.chome_rm -replace '^0+'}},* -Exclude 'chome_rm' |
     
          Export-Csv $exportedFile4 -NoTypeInformation;
@@ -77,7 +75,6 @@ foreach ($element in $schoolArray) {
     }
 
     function KeepGrades3-5 {
-
         $c = @("0", "1", "2")
 
         $csv = (Import-Csv $importedFile5) |
@@ -87,8 +84,7 @@ foreach ($element in $schoolArray) {
         convertto-csv -NoTypeInformation | %{$_-replace '"', ""} | out-file $exportedFile6 -fo -en ascii
 
 }
-    
-    function ReplaceSchoolCodesBasedOnArray {
+        function ReplaceSchoolCodesBasedOnArray {
     # declare hash table with School Code mapping
 
         $csv = Import-Csv $importedFile7
@@ -99,7 +95,6 @@ foreach ($element in $schoolArray) {
                 {
 
                 $row.'School Code' = $schoolCodesArray[$row.'School Code'];
-
                 }
 
             $csv | Export-Csv $exportedFile8 -NoTypeInformation;
@@ -115,7 +110,7 @@ foreach ($element in $schoolArray) {
 
                     $row.'Educator ID (email)' = $row.teachfirst.substring(0,1).tolower()`
                     +$row.teachlast.tolower()`
-                    +"@westasd.org";
+                    +"@email.org";
 
                     if($row.'teachfirst' -eq 'JOHN' -and $row.teachlast -eq 'SMITH') {
          
