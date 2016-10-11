@@ -1,4 +1,7 @@
-﻿$schoolArray = "FIR", "SEC", "THI"
+[int64[]]$PASecureIDArray = @();  # Strongly typed, only integers
+while($s = (Read-Host "Enter a PA SecureID").Trim()){$PASecureIDArray+=$s} # Trim takes out spaces before or after
+
+$schoolArray = "FIR", "SEC", "THI"
 
 foreach ($element in $schoolArray) {
 
@@ -79,7 +82,7 @@ foreach ($element in $schoolArray) {
 
         $csv = (Import-Csv $importedFile5) |
 
-        where {$_.ngrade -notin $c} |
+        where {$_.ngrade -notin $c -and $_.PASecureID -in $PASecureIDArray} |
 
         convertto-csv -NoTypeInformation | %{$_-replace '"', ""} | out-file $exportedFile6 -fo -en ascii
 
